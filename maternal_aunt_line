@@ -1,0 +1,27 @@
+import csv
+from datetime import datetime
+from matplotlib import pyplot as plt
+
+file_name = 'maternal_aunt_data.csv'
+with open(file_name) as f:
+	reader = csv.reader(f)
+	header_row = next(reader)
+
+	months,days = [],[]
+	for row in reader:
+		try:
+			month = int(row[0])
+			day = int(row[1])
+		except ValueError:
+				print(month,'missing data')
+		else:
+			months.append(month)
+			days.append(day)
+
+fig = plt.figure(dpi=128,figsize=(10,8))
+plt.plot(months,days,c='red',alpha=0.5)
+plt.title('maternal_aunt_data')
+plt.xlabel('month',fontsize=16)
+plt.ylabel('day',fontsize=16)
+plt.tick_params(axis='both',labelsize=14)
+plt.show()
